@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tuan.dao.SystemParamMapper" >
+  <resultMap id="BaseResultMap" type="com.tuan.pojo.SystemParam" >
+    <constructor >
+      <arg column="param_key" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="param_value" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="param_desc" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.tuan.pojo.SystemParam" >
+    insert into sys_param (param_key, param_value, param_desc
+      )
+    values (#{paramKey,jdbcType=VARCHAR}, #{paramValue,jdbcType=TIMESTAMP}, #{paramDesc,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tuan.pojo.SystemParam" >
+    insert into sys_param
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="paramKey != null" >
+        param_key,
+      </if>
+      <if test="paramValue != null" >
+        param_value,
+      </if>
+      <if test="paramDesc != null" >
+        param_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="paramKey != null" >
+        #{paramKey,jdbcType=VARCHAR},
+      </if>
+      <if test="paramValue != null" >
+        #{paramValue,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paramDesc != null" >
+        #{paramDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
