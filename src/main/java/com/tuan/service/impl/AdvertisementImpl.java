@@ -2,10 +2,12 @@ package com.tuan.service.impl;
 
 import com.tuan.dao.AdvertisementMapper;
 import com.tuan.dto.AdvertisementDTO;
+import com.tuan.pojo.Advertisement;
 import com.tuan.response.Response;
 import com.tuan.response.ResponseCode;
 import com.tuan.service.IAdvertisementService;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +39,7 @@ public class AdvertisementImpl implements IAdvertisementService {
         if (advertisementDTO.getWeight() == null) {
             return Response.error(ResponseCode.ILLEGAL_ARGUMENT.getCode(), "weight cannot be empty", result);
         }
-        result = advertisementMapper.insert(advertisementDTO);
+        result = advertisementMapper.insert(AdvertisementDTO.toDO(advertisementDTO));
         if (result > 0) {
             return Response.success(result);
         }
