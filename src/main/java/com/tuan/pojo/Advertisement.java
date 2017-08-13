@@ -1,5 +1,8 @@
 package com.tuan.pojo;
 
+import com.tuan.dto.AdvertisementDTO;
+import org.springframework.beans.BeanUtils;
+
 public class Advertisement {
     private Integer id;
 
@@ -61,5 +64,16 @@ public class Advertisement {
 
     public void setWeight(Integer weight) {
         this.weight = weight;
+    }
+
+    /**
+     * 将DO转化为DTO
+     * @param advertisement
+     * @return
+     */
+    public static AdvertisementDTO toDTO(Advertisement advertisement) {
+        AdvertisementDTO advertisementDTO = new AdvertisementDTO();
+        BeanUtils.copyProperties(advertisement, advertisementDTO);
+        return advertisementDTO;
     }
 }

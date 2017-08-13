@@ -1,8 +1,10 @@
 package com.tuan.service.impl;
 
+import com.google.common.collect.Lists;
 import com.tuan.dao.AdvertisementMapper;
 import com.tuan.dto.AdvertisementDTO;
 import com.tuan.pojo.Advertisement;
+import com.tuan.query.AdvertisementQuery;
 import com.tuan.response.Response;
 import com.tuan.response.ResponseCode;
 import com.tuan.service.IAdvertisementService;
@@ -10,6 +12,8 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by buzheng on 17/7/31.
@@ -44,5 +48,20 @@ public class AdvertisementImpl implements IAdvertisementService {
             return Response.success(result);
         }
         return Response.errorByFailed(result);
+    }
+
+    @Override
+    public Response<List<AdvertisementDTO>> selectListByQuery(AdvertisementQuery advertisementQuery) {
+        List<AdvertisementDTO> result = Lists.newArrayList();
+        if (advertisementQuery == null) {
+            return Response.error(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDes(), result);
+        }
+        List<Advertisement> advertisements = advertisementMapper.selectByQuery(advertisementQuery);
+        if (advertisements != null) {
+            for (Advertisement advertisement : advertisements) {
+                result.add(Advertisement.toDTO(advertisement));
+            }
+        }
+        return Response.success(result);
     }
 }

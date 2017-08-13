@@ -1,6 +1,9 @@
 package com.tuan.dao;
 
 import com.tuan.pojo.Advertisement;
+import com.tuan.query.AdvertisementQuery;
+
+import java.util.List;
 
 public interface AdvertisementMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +17,6 @@ public interface AdvertisementMapper {
     int updateByPrimaryKeySelective(Advertisement record);
 
     int updateByPrimaryKey(Advertisement record);
+
+    List<Advertisement> selectByQuery(AdvertisementQuery advertisementQuery);
 }
