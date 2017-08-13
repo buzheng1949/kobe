@@ -16,6 +16,16 @@ public class AdvertisementQuery extends BaseQuery {
 
     private Integer weight;
 
+    private String extraMessage;
+
+    public String getExtraMessage() {
+        return extraMessage;
+    }
+
+    public void setExtraMessage(String extraMessage) {
+        this.extraMessage = extraMessage;
+    }
+
     public String getTitle() {
         return title;
     }

@@ -3,6 +3,7 @@ package com.tuan.service.impl;
 import com.google.common.collect.Lists;
 import com.tuan.dao.AdvertisementMapper;
 import com.tuan.dto.AdvertisementDTO;
+import com.tuan.pagehelper.AdvertisementParams;
 import com.tuan.pojo.Advertisement;
 import com.tuan.query.AdvertisementQuery;
 import com.tuan.response.Response;
@@ -62,6 +63,7 @@ public class AdvertisementImpl implements IAdvertisementService {
                 result.add(Advertisement.toDTO(advertisement));
             }
         }
-        return Response.success(result);
+        String extraMessage = AdvertisementParams.buildMbook(advertisementQuery.getPage() + 1, advertisementQuery.getPageSize());
+        return Response.success(result, extraMessage);
     }
 }
