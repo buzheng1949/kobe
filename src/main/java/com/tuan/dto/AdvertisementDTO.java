@@ -1,6 +1,7 @@
 package com.tuan.dto;
 
 import com.tuan.pojo.Advertisement;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.beans.BeanUtils;
 
 /**
@@ -8,6 +9,7 @@ import org.springframework.beans.BeanUtils;
  * 数据传输类
  */
 public class AdvertisementDTO extends Advertisement {
+
 
     /**
      * 将DTO转化为DO
