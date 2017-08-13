@@ -6,7 +6,7 @@ import javax.management.Query;
  * Created by buzheng on 17/8/13.
  * 广告查询类
  */
-public class AdvertisementQuery extends Query {
+public class AdvertisementQuery extends BaseQuery {
 
     private String title;
 
