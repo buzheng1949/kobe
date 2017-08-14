@@ -47,8 +47,8 @@ public class AdvertismentController {
     public Response<List<AdvertisementDTO>> list(AdvertisementQuery advertisementQuery) {
         List<AdvertisementDTO> result = Lists.newArrayList();
         String mBook = "";
-        Integer page = 0;
-        Integer pageSize = 10;
+        Integer page = 1;
+        Integer pageSize = 1;
         if (advertisementQuery == null) {
             return Response.error(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDes(), result);
         }
@@ -56,7 +56,7 @@ public class AdvertismentController {
             String extraMessage = advertisementQuery.getExtraMessage();
             AdvertisementParams advertisementParams = AdvertisementParams.covertToAdvertisementParams(extraMessage);
             page = advertisementParams.getPage();
-            pageSize = advertisementQuery.getPageSize();
+            pageSize = advertisementParams.getPageSize();
         }
         advertisementQuery.setPage(page);
         advertisementQuery.setPageSize(pageSize);

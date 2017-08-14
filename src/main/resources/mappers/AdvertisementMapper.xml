@@ -110,5 +110,12 @@
         <if test="weight != null">
             and weight = #{weight,jdbcType=INTEGER}
         </if>
+        <include refid="fetchLimitClause"/>
     </select>
+    <!-- fetch limit子句-->
+    <sql id="fetchLimitClause">
+        <if test="page != null and page >= 0 and pageSize != null and pageSize > 0">
+            LIMIT #{page}, #{pageSize}
+        </if>
+    </sql>
 </mapper>

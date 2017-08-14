@@ -20,6 +20,7 @@ public class BaseParams {
         this.mBook = mBook;
     }
 
+
     /**
      * 解析mbook
      *
