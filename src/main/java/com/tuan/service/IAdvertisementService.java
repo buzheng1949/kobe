@@ -26,4 +26,18 @@ public interface IAdvertisementService {
      * @return
      */
     Response<List<AdvertisementDTO>> selectListByQuery(AdvertisementQuery advertisementQuery);
+
+    /**
+     * 删除某条记录  物理删除
+     * @param advertisementDTO
+     * @return
+     */
+    Response<Boolean> delete(AdvertisementDTO advertisementDTO);
+
+    /**
+     * 更新一条记录
+     * @param advertisementDTO
+     * @return
+     */
+    Response<Long> update(AdvertisementDTO advertisementDTO);
 }
