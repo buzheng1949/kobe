@@ -66,4 +66,20 @@ public class AdvertisementImpl implements IAdvertisementService {
         String extraMessage = AdvertisementParams.buildMbook(advertisementQuery.getPage() + 1, advertisementQuery.getPageSize());
         return Response.success(result, extraMessage);
     }
+
+    @Override
+    public Response<Boolean> delete(AdvertisementDTO advertisementDTO) {
+        Integer count = advertisementMapper.deleteByPrimaryKey(advertisementDTO.getId());
+        boolean result = count > 0 ? true : false;
+        if (result) {
+            return Response.success(result);
+        }
+        return Response.errorByFailed(result);
+    }
+
+    @Override
+    public Response<Long> update(AdvertisementDTO advertisementDTO) {
+        Integer count = advertisementMapper.updateByPrimaryKeySelective(advertisementDTO);
+        return Response.success(Long.valueOf(String.valueOf(count)));
+    }
 }
